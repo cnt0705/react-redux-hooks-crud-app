@@ -1,9 +1,9 @@
-export const events = (state = [], action) => {
+export const eventReducer = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_EVENT':
-      const { title, body } = action
+      const event = action.payload
       const id = state.length === 0 ? 1 : state.slice(-1)[0].id + 1
-      return [...state, { id, title, body }]
+      return [...state, { id, ...event }]
 
     case 'DELETE_EVENT':
       return state
