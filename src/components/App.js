@@ -11,6 +11,15 @@ export const App = () => {
     setForm({ title: '', body: '' })
   }
 
+  const deleteEvent = id => {
+    dispatch({ type: 'DELETE_EVENT', payload: { id } })
+  }
+
+  const deleteAllEvents = e => {
+    e.preventDefault()
+    dispatch({ type: 'DELETE_ALL_EVENTS' })
+  }
+
   return (
     <div className="container-fluid p-5">
       <section className="mb-5">
@@ -38,7 +47,7 @@ export const App = () => {
           <button type="submit" className="btn btn-primary mr-3" onClick={addEvent}>
             イベントを作成する
           </button>
-          <button type="submit" className="btn btn-danger mr-3">
+          <button type="submit" className="btn btn-danger mr-3" onClick={deleteAllEvents}>
             すべてのイベントを削除する
           </button>
         </form>
@@ -61,7 +70,15 @@ export const App = () => {
                 <td>{event.id}</td>
                 <td>{event.title}</td>
                 <td>{event.body}</td>
-                <td></td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => deleteEvent(event.id)}
+                  >
+                    削除
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

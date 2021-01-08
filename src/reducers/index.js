@@ -2,11 +2,12 @@ export const eventReducer = (state = [], action) => {
   switch (action.type) {
     case 'CREATE_EVENT':
       const event = action.payload
-      const id = state.length === 0 ? 1 : state.slice(-1)[0].id + 1
-      return [...state, { id, ...event }]
+      const nextId = state.length === 0 ? 1 : state.slice(-1)[0].id + 1
+      return [...state, { ...event, id: nextId }]
 
     case 'DELETE_EVENT':
-      return state
+      const eventId = action.payload.id
+      return state.filter(event => event.id !== eventId)
 
     case 'DELETE_ALL_EVENTS':
       return []
