@@ -1,6 +1,8 @@
 import { useReducer, useState } from 'react'
 import { eventReducer } from '../reducers'
 
+import { Event } from '../components/Event'
+
 export const App = () => {
   const [state, dispatch] = useReducer(eventReducer, [])
   const [form, setForm] = useState({ title: '', body: '' })
@@ -66,20 +68,7 @@ export const App = () => {
           </thead>
           <tbody>
             {state.map(event => (
-              <tr key={event.id}>
-                <td>{event.id}</td>
-                <td>{event.title}</td>
-                <td>{event.body}</td>
-                <td>
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => deleteEvent(event.id)}
-                  >
-                    削除
-                  </button>
-                </td>
-              </tr>
+              <Event key={event.id} event={event} deleteEvent={deleteEvent} />
             ))}
           </tbody>
         </table>
