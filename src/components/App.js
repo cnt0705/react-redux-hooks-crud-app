@@ -4,8 +4,11 @@ import { eventReducer } from '../reducers'
 import { Event } from '../components/Event'
 
 export const App = () => {
-  const [state, dispatch] = useReducer(eventReducer, [])
+  const [events, dispatch] = useReducer(eventReducer, [])
   const [form, setForm] = useState({ title: '', body: '' })
+
+  const emptyForm = !form.title || !form.body
+  const noEvents = events.length <= 0
 
   const addEvent = e => {
     e.preventDefault()
@@ -46,10 +49,20 @@ export const App = () => {
               onChange={e => setForm(form => ({ ...form, body: e.target.value }))}
             />
           </div>
-          <button type="submit" className="btn btn-primary mr-3" onClick={addEvent}>
+          <button
+            type="submit"
+            className="btn btn-primary mr-3"
+            disabled={emptyForm}
+            onClick={addEvent}
+          >
             イベントを作成する
           </button>
-          <button type="submit" className="btn btn-danger mr-3" onClick={deleteAllEvents}>
+          <button
+            type="submit"
+            className="btn btn-danger mr-3"
+            disabled={noEvents}
+            onClick={deleteAllEvents}
+          >
             すべてのイベントを削除する
           </button>
         </form>
@@ -67,7 +80,7 @@ export const App = () => {
             </tr>
           </thead>
           <tbody>
-            {state.map(event => (
+            {events.map(event => (
               <Event key={event.id} event={event} deleteEvent={deleteEvent} />
             ))}
           </tbody>
