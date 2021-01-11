@@ -14,6 +14,7 @@ export const EventForm = ({ className }) => {
 
   const emptyForm = !form.title || !form.body
   const noEvents = state.events.length <= 0
+  const noLogs = state.operationLogs.length <= 0
 
   const addEvent = e => {
     e.preventDefault()
@@ -29,11 +30,18 @@ export const EventForm = ({ className }) => {
     e.preventDefault()
     dispatch({ type: DELETE_ALL_EVENTS })
     dispatch({
-      type: DELETE_ALL_OPERATION_LOGS,
+      type: ADD_OPERATION_LOG,
       payload: {
         description: 'すべてのイベントを削除しました。',
         operatedAt: timeCurrentIso8601(),
       },
+    })
+  }
+
+  const deleteAllOperationLogs = e => {
+    e.preventDefault()
+    dispatch({
+      type: DELETE_ALL_OPERATION_LOGS,
     })
   }
 
@@ -75,6 +83,14 @@ export const EventForm = ({ className }) => {
           onClick={deleteAllEvents}
         >
           すべてのイベントを削除する
+        </button>
+        <button
+          type="submit"
+          className="btn btn-outline-danger mr-3"
+          disabled={noLogs}
+          onClick={deleteAllOperationLogs}
+        >
+          すべての操作ログを削除する
         </button>
       </form>
     </section>
