@@ -1,8 +1,9 @@
 import { Event } from '../components/Event'
+import { DELETE_EVENT } from '../actions'
 
 export const Events = ({ className, events, dispatch }) => {
   const deleteEvent = id => {
-    dispatch({ type: 'DELETE_EVENT', payload: { id } })
+    dispatch({ type: DELETE_EVENT, payload: { id } })
   }
 
   return (
