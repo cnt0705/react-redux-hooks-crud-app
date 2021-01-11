@@ -4,7 +4,7 @@ import { AppContext } from '../contexts/AppContext'
 import { Event } from '../components/Event'
 
 export const Events = ({ className }) => {
-  const { events } = useContext(AppContext)
+  const { state } = useContext(AppContext)
 
   return (
     <section className={className}>
@@ -19,7 +19,7 @@ export const Events = ({ className }) => {
           </tr>
         </thead>
         <tbody>
-          {events.map(event => (
+          {state.events.map(event => (
             <Event key={event.id} event={event} />
           ))}
         </tbody>

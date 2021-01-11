@@ -4,10 +4,10 @@ import { AppContext } from '../contexts/AppContext'
 
 export const EventForm = ({ className }) => {
   const [form, setForm] = useState({ title: '', body: '' })
-  const { events, dispatch } = useContext(AppContext)
+  const { state, dispatch } = useContext(AppContext)
 
   const emptyForm = !form.title || !form.body
-  const noEvents = events.length <= 0
+  const noEvents = state.events.length <= 0
 
   const addEvent = e => {
     e.preventDefault()
