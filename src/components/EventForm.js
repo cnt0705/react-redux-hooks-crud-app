@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export const EventForm = ({ events, dispatch }) => {
+export const EventForm = ({ className, events, dispatch }) => {
   const [form, setForm] = useState({ title: '', body: '' })
 
   const emptyForm = !form.title || !form.body
@@ -18,7 +18,7 @@ export const EventForm = ({ events, dispatch }) => {
   }
 
   return (
-    <section className="mb-5">
+    <section className={className}>
       <h4>イベント作成フォーム</h4>
       <form>
         <div className="form-group">
