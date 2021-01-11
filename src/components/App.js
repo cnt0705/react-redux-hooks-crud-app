@@ -6,7 +6,7 @@ import { Events } from '../components/Events'
 import { EventForm } from '../components/EventForm'
 
 export const App = () => {
-  const initialState = { events: [] }
+  const initialState = { events: [], operationLogs: [] }
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
