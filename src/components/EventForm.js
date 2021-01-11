@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions'
+import { AppContext } from '../contexts/AppContext'
 
-export const EventForm = ({ className, events, dispatch }) => {
+export const EventForm = ({ className }) => {
   const [form, setForm] = useState({ title: '', body: '' })
+  const { events, dispatch } = useContext(AppContext)
 
   const emptyForm = !form.title || !form.body
   const noEvents = events.length <= 0

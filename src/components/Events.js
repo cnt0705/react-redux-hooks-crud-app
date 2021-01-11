@@ -1,10 +1,10 @@
-import { Event } from '../components/Event'
-import { DELETE_EVENT } from '../actions'
+import { useContext } from 'react'
+import { AppContext } from '../contexts/AppContext'
 
-export const Events = ({ className, events, dispatch }) => {
-  const deleteEvent = id => {
-    dispatch({ type: DELETE_EVENT, payload: { id } })
-  }
+import { Event } from '../components/Event'
+
+export const Events = ({ className }) => {
+  const { events } = useContext(AppContext)
 
   return (
     <section className={className}>
@@ -20,7 +20,7 @@ export const Events = ({ className, events, dispatch }) => {
         </thead>
         <tbody>
           {events.map(event => (
-            <Event key={event.id} event={event} deleteEvent={deleteEvent} />
+            <Event key={event.id} event={event} />
           ))}
         </tbody>
       </table>

@@ -1,4 +1,14 @@
-export const Event = ({ event, deleteEvent }) => {
+import { useContext } from 'react'
+import { DELETE_EVENT } from '../actions'
+import { AppContext } from '../contexts/AppContext'
+
+export const Event = ({ event }) => {
+  const { dispatch } = useContext(AppContext)
+
+  const deleteEvent = id => {
+    dispatch({ type: DELETE_EVENT, payload: { id } })
+  }
+
   return (
     <tr>
       <td>{event.id}</td>
